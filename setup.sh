@@ -18,12 +18,10 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
-# Install ssh
-scjahat="raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssh"
 # Install xray
-scjahatt="raw.githubusercontent.com/fisabiliyusri/Mantap/main/xray"
+scjahatt="raw.githubusercontent.com/Odingpret/scvmess/main/xray"
 # Install websocket
-scjahattt="raw.githubusercontent.com/fisabiliyusri/Mantap/main/websocket"
+scjahattt="raw.githubusercontent.com/Odingpret/scvmess/main/websocket"
 
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
@@ -38,7 +36,6 @@ exit 0
 fi
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
-wget https://${scjahat}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
 #install xray
 wget https://${scjahatt}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
 # Websocket
