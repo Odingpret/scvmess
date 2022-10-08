@@ -7,6 +7,7 @@ if [ "$(systemd-detect-virt)" == "openvz" ]; then
 		echo "OpenVZ is not supported"
 		exit 1
 fi
+# My Telegram : https://t.me/Akbar218
 # ==========================================
 # Color
 RED='\033[0;31m'
@@ -18,61 +19,91 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
-# Install xray
-scjahatt="raw.githubusercontent.com/Odingpret/scvmess/main/xray"
-# Install websocket
-scjahattt="raw.githubusercontent.com/Odingpret/scvmess/main/websocket"
+# Link Hosting Kalian Untuk Xray
+akbarvpnnnnnn="raw.githubusercontent.com/Odingpret/scvmess/main/xray"
+# Link Hosting Kalian Untuk Websocket
+akbarvpnnnnnnnnn="raw.githubusercontent.com/Odingpret/scvmess/main/websocket"
 
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
 echo "Checking VPS"
 IZIN=$(wget -qO- ipinfo.io/ip);
-
+if [ $MYIP = $IZIN ]; then
+echo -e "${NC}${GREEN}Permission Accepted...${NC}"
+else
+echo -e "${NC}${RED}Permission Denied!${NC}";
+echo -e "${NC}${LIGHT}Please Contact Admin!!"
+echo -e "${NC}${LIGHT}Facebook : https://m.facebook.com/lis.tio.718"
+echo -e "${NC}${LIGHT}WhatsApp : 081545854516"
+echo -e "${NC}${LIGHT}Telegram : https://t.me/Akbar218"
+exit 0
+fi
 rm -f setup.sh
 clear
 if [ -f "/etc/xray/domain" ]; then
 echo "Script Already Installed"
 exit 0
 fi
-mkdir /var/lib/crot;
-echo "IP=" >> /var/lib/crot/ipvps.conf
-#install xray
-wget https://${scjahatt}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
-# Websocket
+mkdir /var/lib/akbarstorevpn;
+echo "IP=" >> /var/lib/akbarstorevpn/ipvps.conf
+wget https://${akbarvpn}/cf.sh && chmod +x cf.sh && ./cf.sh
+#install v2ray
+wget https://${akbarvpnnnnnn}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
 
-
-rm -f /root/ssh-vpn.sh
 rm -f /root/ins-xray.sh
-rm -f /root/install
 cat <<EOF> /etc/systemd/system/autosett.service
 [Unit]
 Description=autosetting
-Documentation=nekopoi.care
+Documentation=https://t.me/Akbar218
+
 [Service]
 Type=oneshot
 ExecStart=/bin/bash /etc/set.sh
 RemainAfterExit=yes
+
 [Install]
 WantedBy=multi-user.target
 EOF
 systemctl daemon-reload
 systemctl enable autosett
-wget -O /etc/set.sh
+wget -O /etc/set.sh "https://${akbarvpn}/set.sh"
 chmod +x /etc/set.sh
 history -c
 echo "1.2" > /home/ver
 echo " "
-echo "Installation has been completed!!"echo " "
-echo "============================================================================" | tee -a log-install.txt
+echo "Installation has been completed!!"
+echo " "
+echo "=================================-Akbar Maulana Project-===========================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------" | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - CloudFront Websocket    : "  | tee -a log-install.txt
-echo "   - SSH Websocket TLS       : 443"  | tee -a log-install.txt
-echo "   - SSH Websocket HTTP      : 8880"  | tee -a log-install.txt
-echo "   - Websocket OpenVPN       : 2086"  | tee -a log-install.txtcho "   - XRAYS Vmess TLS         : 8443"  | tee -a log-install.txt
+echo "   - OpenSSH                 : 443, 22"  | tee -a log-install.txt
+echo "   - OpenVPN                 : TCP 1194, UDP 2200, SSL 990"  | tee -a log-install.txt
+echo "   - Stunnel5                : 443, 445, 777"  | tee -a log-install.txt
+echo "   - Dropbear                : 443, 109, 143"  | tee -a log-install.txt
+echo "   - Squid Proxy             : 3128, 8080"  | tee -a log-install.txt
+echo "   - Badvpn                  : 7100, 7200, 7300"  | tee -a log-install.txt
+echo "   - Nginx                   : 89"  | tee -a log-install.txt
+echo "   - Wireguard               : 7070"  | tee -a log-install.txt
+echo "   - L2TP/IPSEC VPN          : 1701"  | tee -a log-install.txt
+echo "   - PPTP VPN                : 1732"  | tee -a log-install.txt
+echo "   - SSTP VPN                : 444"  | tee -a log-install.txt
+echo "   - Shadowsocks-R           : 1443-1543"  | tee -a log-install.txt
+echo "   - SS-OBFS TLS             : 2443-2543"  | tee -a log-install.txt
+echo "   - SS-OBFS HTTP            : 3443-3543"  | tee -a log-install.txt
+echo "   - XRAYS Vmess TLS         : 8443"  | tee -a log-install.txt
 echo "   - XRAYS Vmess None TLS    : 80"  | tee -a log-install.txt
+echo "   - XRAYS Vless TLS         : 8443"  | tee -a log-install.txt
+echo "   - XRAYS Vless None TLS    : 80"  | tee -a log-install.txt
+echo "   - XRAYS Trojan            : 2083"  | tee -a log-install.txt
+echo "   - Websocket TLS           : 443"  | tee -a log-install.txt
+echo "   - Websocket None TLS      : 8880"  | tee -a log-install.txt
+echo "   - Websocket Ovpn          : 2086"  | tee -a log-install.txt
+echo "   - OHP SSH                 : 8181"  | tee -a log-install.txt
+echo "   - OHP Dropbear            : 8282"  | tee -a log-install.txt
+echo "   - OHP OpenVPN             : 8383"  | tee -a log-install.txt
+echo "   - Tr Go                   : 2087"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
 echo "   - Timezone                : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
@@ -88,6 +119,15 @@ echo "   - Auto Delete Expired Account" | tee -a log-install.txt
 echo "   - Full Orders For Various Services" | tee -a log-install.txt
 echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
+echo "   - Dev/Main                : Horas Marolop Amsal Siregar"  | tee -a log-install.txt
+echo "   - Recode                  : Akbar Maulana" | tee -a log-install.txt
+echo "   - Telegram                : T.me/Akbar218"  | tee -a log-install.txt
+echo "   - Instagram               : ~"  | tee -a log-install.txt
+echo "   - Whatsapp                : 081545854516"  | tee -a log-install.txt
+echo "   - Facebook                : https://m.facebook.com/lis.tio.718" | tee -a log-install.txt
+echo "----------------------Script Created By Akbar Maulana Project----------------------" | tee -a log-install.txt
+echo ""
 echo " Reboot 15 Sec"
 sleep 15
 rm -f setup.sh
