@@ -17,47 +17,65 @@ BLUE='\033[0;34m'
 PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
-# =========================================
+# ==========================================
+# Install ssh
+scjahat="raw.githubusercontent.com/fisabiliyusri/Mantap/main/ssh"
+# Install xray
+scjahatt="raw.githubusercontent.com/fisabiliyusri/Mantap/main/xray"
+# Install websocket
+scjahattt="raw.githubusercontent.com/fisabiliyusri/Mantap/main/websocket"
+
 # Getting
 MYIP=$(wget -qO- ipinfo.io/ip);
 echo "Checking VPS"
 IZIN=$(wget -qO- ipinfo.io/ip);
+
+rm -f setup.sh
 clear
+if [ -f "/etc/xray/domain" ]; then
+echo "Script Already Installed"
+exit 0
+fi
 mkdir /var/lib/crot;
 echo "IP=" >> /var/lib/crot/ipvps.conf
-cd
-#install tools/alat
-wget https://raw.githubusercontent.com/fisabiliyusri/XRAY-MANTAP/main/install-tools.sh && chmod +x install-tools.sh && ./install-tools.sh
-#
-#Instal Xray
-wget https://raw.githubusercontent.com/fisabiliyusri/XRAY-MANTAP/main/install-xray.sh && chmod +x install-xray.sh && ./install-xray.sh
-#install xmenu
-wget https://raw.githubusercontent.com/fisabiliyusri/XRAY-MANTAP/main/menu/updatedll.sh && chmod +x updatedll.sh && ./updatedll.sh
-#
-#SELESAI
+wget https://${scjahat}/slhost.sh && chmod +x slhost.sh && ./slhost.sh
+#install xray
+wget https://${scjahatt}/ins-xray.sh && chmod +x ins-xray.sh && screen -S xray ./ins-xray.sh
+# Websocket
+
+
+rm -f /root/ssh-vpn.sh
+rm -f /root/ins-xray.sh
+rm -f /root/install
+cat <<EOF> /etc/systemd/system/autosett.service
+[Unit]
+Description=autosetting
+Documentation=nekopoi.care
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /etc/set.sh
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl enable autosett
+wget -O /etc/set.sh
+chmod +x /etc/set.sh
+history -c
+echo "1.2" > /home/ver
 echo " "
 echo "Installation has been completed!!"echo " "
 echo "============================================================================" | tee -a log-install.txt
 echo "" | tee -a log-install.txt
 echo "----------------------------------------------------------------------------" | tee -a log-install.txt
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"  | tee -a log-install.txt
-echo -e "    SCRIPT MANTAP-XRAY Multi Port"  | tee -a log-install.txt
-echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Service & Port"  | tee -a log-install.txt
-echo "   - Nginx                      : 89"  | tee -a log-install.txt
-echo "   - XRAYS TROJAN WS TLS        : 443"  | tee -a log-install.txt
-echo "   - XRAYS SHADOWSOCKS WS TLS   : 443"  | tee -a log-install.txt
-echo "   - XRAYS VLESS WS TLS         : 443"  | tee -a log-install.txt
-echo "   - XRAYS VMESS WS TLS         : 443"  | tee -a log-install.txt
-echo "   - XRAYS TROJAN WS HTTP       : 80"  | tee -a log-install.txt
-echo "   - XRAYS SHADOWSOCKS WS HTTP  : 80"  | tee -a log-install.txt
-echo "   - XRAYS VLESS WS HTTP        : 80"  | tee -a log-install.txt
-echo "   - XRAYS VMESS WS HTTP        : 80"  | tee -a log-install.txt
-echo "   - XRAYS TROJAN GRPC          : 443"  | tee -a log-install.txt
-echo "   - XRAYS SHADOWSOCKS GRPC     : 443"  | tee -a log-install.txt
-echo "   - XRAYS VMESS GRPC           : 443"  | tee -a log-install.txt
-echo "   - XRAYS VLESS GRPC           : 443"  | tee -a log-install.txt
+echo "   - CloudFront Websocket    : "  | tee -a log-install.txt
+echo "   - SSH Websocket TLS       : 443"  | tee -a log-install.txt
+echo "   - SSH Websocket HTTP      : 8880"  | tee -a log-install.txt
+echo "   - Websocket OpenVPN       : 2086"  | tee -a log-install.txtcho "   - XRAYS Vmess TLS         : 8443"  | tee -a log-install.txt
+echo "   - XRAYS Vmess None TLS    : 80"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
 echo "   - Timezone                : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
@@ -75,9 +93,5 @@ echo "   - White Label" | tee -a log-install.txt
 echo "   - Installation Log --> /root/log-install.txt"  | tee -a log-install.txt
 echo " Reboot 15 Sec"
 sleep 15
-cd
-rm -rf updatedll
-rm -rf updatedll.sh
-rm -rf setup.sh
-rm -rf install-xray.sh
-rm -rf install-tools.sh
+rm -f setup.sh
+reboot
